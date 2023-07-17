@@ -1,21 +1,26 @@
 import React from 'react';
 import { useState } from 'react'
 import { useEffect } from 'react'
-import App from '../App';
+// import App from '../App';
 
+const handleClick = (toggleClock, e) => {
+  e.preventDefault()
+  toggleClock();
+}
 export function ClockToggle(toggleClock) {
   // render () {
     return (
       <button 
         type="button"
         className="clock-toggle" 
-        onClick={toggleClock}
+        onClick={handleClick(toggleClock)}
       >
         Toggle Clock
       </button>
     )
-  // }
-} 
+    // }
+  }
+
 
 function Clock() {
   // constructor(props) {
@@ -55,14 +60,14 @@ function Clock() {
   }
 
  
-    let hours = this.state.time.getHours();
-    let minutes = this.state.time.getMinutes();
-    let seconds = this.state.time.getSeconds();
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let seconds = time.getSeconds();
     hours = (hours < 10) ? `0${hours}` : hours;
     minutes = (minutes < 10) ? `0${minutes}` : minutes;
     seconds = (seconds < 10) ? `0${seconds}` : seconds;
 
-    const timezone = this.state.time
+    const timezone = time
       .toTimeString() // Form: "14:39:07 GMT-0600 (PDT)"
       .replace(/[^A-Z]/g, "") // Strip out all but capitals
       .slice(3); // Eliminate initial GMT
@@ -84,7 +89,7 @@ function Clock() {
               Date: 
             </span>
             <span>
-              {this.state.time.toDateString()}
+              {time.toDateString()}
             </span>
           </p>
         </div>
