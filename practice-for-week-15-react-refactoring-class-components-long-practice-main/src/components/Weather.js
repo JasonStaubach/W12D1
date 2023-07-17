@@ -40,7 +40,7 @@ function Weather(){
             const res = await fetch(url);
             if (res.ok) {
               const weather = await res.json();
-              this.setState({ weather });
+              setWeather(weather);
             }
             else {
               alert ("Check Weather API key!")
